@@ -2,10 +2,10 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Login from "./components/login";
+import Register from './components/register';
 import Photos from "./components/photos";
 import { createGlobalStyle } from 'styled-components'
 
@@ -25,6 +25,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Login/>
+          </Route>
+          <Route exact path="/register">
+            <Register/>
           </Route>
           <Route path="/photos">
             <Photos />
