@@ -1,23 +1,52 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../api/api";
 import RegisterStyles from "./styles"
 
 const Register = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [pswrdConf, setPswrdConf] = useState("");
+
+    const handleNewUser = async (e) => {
+        e.preventDefault();
+        const data = {
+            email: email,
+            password: password
+        }
+        try {
+            await api.post('/users', data)
+            alert("usuário criado com sucesso.")
+        } catch (e) {
+            alert(e)
+        }
+    }
+
     return (
         <RegisterStyles>
             <div>
                 <h1>Registrar</h1>
             </div>
-            <div>
-                <input placeholder="Email"/>
+            <form
+            onSubmit={e => handleNewUser(e)}
+            >
                 <input 
+                onChange={e => setEmail(e.target.value)}
+                placeholder="Email"/>
+                <input 
+                onChange={e => setPassword(e.target.value)}
                 type="password"
                 placeholder="Senha"/>
                 <input 
+                onChange={e => setPswrdConf(e.target.value)}
                 type="password"
                 placeholder="Confirme sua senha"/>
-                <button>Criar</button>
+                <button
+                type="submit"
+                >Criar</button>
                 <p>Já tem uma conta? <Link to="/">Faça Login</Link></p>
-            </div>
+            </form>
         </RegisterStyles>
     )
 }

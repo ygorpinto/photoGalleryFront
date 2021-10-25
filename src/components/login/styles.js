@@ -4,7 +4,7 @@ const LoginStyles = styled.div`
 display: flex;
 flex-direction: column;
 
-div {
+form, div {
     width: 100%;
     align-items: center;
     justify-content: center;

@@ -4,7 +4,7 @@ const RegisterStyles = styled.div`
 display: flex;
 flex-direction: column;
 
-div {
+div, form {
     width: 100%;
     align-items: center;
     justify-content: center;
