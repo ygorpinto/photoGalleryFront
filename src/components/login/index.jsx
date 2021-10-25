@@ -16,6 +16,7 @@ const Login = () => {
             password: password
         }
         const res = await api.post('/sessions', data)
+        console.log(res.data);
     }
 
     return (
