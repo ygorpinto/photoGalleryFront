@@ -37,7 +37,7 @@ const Login = () => {
 
     return (
         <>
-        {loggedIn ? (
+        {loggedIn || cookies.get('auth_token') ? (
             <Redirect to='/photos'/>
         ) : (
                     <LoginStyles>

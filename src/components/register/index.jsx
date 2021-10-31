@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import api from "../api/api";
 import RegisterStyles from "./styles"
 
@@ -8,6 +8,8 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [pswrdConf, setPswrdConf] = useState("");
+
+    const [toLogin, setToLogin] = useState(false);
 
     const handleNewUser = async (e) => {
         e.preventDefault();
@@ -18,13 +20,18 @@ const Register = () => {
         try {
             await api.post('/users', data)
             alert("usuário criado com sucesso.")
+            setToLogin(true)
         } catch (e) {
             alert(e)
         }
     }
 
     return (
-        <RegisterStyles>
+        <>
+        {toLogin ? (
+            <Redirect to='/'/>
+        ) : (
+            <RegisterStyles>
             <div>
                 <h1>Registrar</h1>
             </div>
@@ -48,6 +55,8 @@ const Register = () => {
                 <p>Já tem uma conta? <Link to="/">Faça Login</Link></p>
             </form>
         </RegisterStyles>
+        )}
+        </>
     )
 }
 
