@@ -10,6 +10,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [loggedIn, setLoggedIn] = useState(null);
+
     // talvez eu use pra mudar o theme!
     const {
         state,
@@ -26,6 +28,7 @@ const Login = () => {
         }
         const res = await api.post('/sessions', data)
         cookies.set('auth_token', res.data, {path:'/'});
+        setLoggedIn(true)
     }
 
     
@@ -34,7 +37,7 @@ const Login = () => {
 
     return (
         <>
-        {(cookies.get('auth_token') && cookies.get('auth_token') !== 'undefined') ? (
+        {loggedIn ? (
             <Redirect to='/photos'/>
         ) : (
                     <LoginStyles>
