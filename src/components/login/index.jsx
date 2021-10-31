@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import Cookies from "universal-cookie/es6";
 import api from "../api/api";
 import { GlobalContext } from "../context/globalContext";
 import LoginStyles from "./styles";
@@ -9,10 +10,13 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    // talvez eu use pra mudar o theme!
     const {
         state,
         dispatch
     } = useContext(GlobalContext);
+
+    const cookies = new Cookies();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -21,33 +25,39 @@ const Login = () => {
             password: password
         }
         const res = await api.post('/sessions', data)
-        dispatch({
-            type:'login',
-            payload:res.data
-        });
-        console.log(res.data);
+        cookies.set('auth_token', res.data, {path:'/'});
     }
 
+    
+
+    
+
     return (
-        <LoginStyles>
-            <div>
-                <h1>Login</h1>
-            </div>
-            <form
-            onSubmit={e => handleLogin(e)}
-            >
-                <input 
-                  onChange={e => setEmail(e.target.value)}
-                  placeholder="Email"/>
-                <input
-                  onChange={e => setPassword(e.target.value)}
-                  placeholder="Senha"/>
-                <button
-                type="submit"
-                >Entrar</button>
-                <p>Não tem uma conta? <Link to="/register">Crie sua conta</Link></p>
-            </form>
-        </LoginStyles>
+        <>
+        {(cookies.get('auth_token') && cookies.get('auth_token') !== 'undefined') ? (
+            <Redirect to='/photos'/>
+        ) : (
+                    <LoginStyles>
+                    <div>
+                        <h1>Login</h1>
+                    </div>
+                    <form
+                    onSubmit={e => handleLogin(e)}
+                    >
+                        <input 
+                          onChange={e => setEmail(e.target.value)}
+                          placeholder="Email"/>
+                        <input
+                          onChange={e => setPassword(e.target.value)}
+                          placeholder="Senha"/>
+                        <button
+                        type="submit"
+                        >Entrar</button>
+                        <p>Não tem uma conta? <Link to="/register">Crie sua conta</Link></p>
+                    </form>
+                </LoginStyles>
+        )}
+        </>
     )
 }
 
