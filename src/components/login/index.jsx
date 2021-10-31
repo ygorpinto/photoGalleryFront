@@ -31,10 +31,6 @@ const Login = () => {
         setLoggedIn(true)
     }
 
-    
-
-    
-
     return (
         <>
         {loggedIn || cookies.get('auth_token') ? (
