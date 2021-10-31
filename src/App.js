@@ -7,13 +7,14 @@ import {
 import Login from "./components/login";
 import Register from './components/register';
 import Photos from "./components/photos";
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'; 
 import GlobalProvider from "./components/context/globalContext";
+import NavBar from "./components/navbar/navbar";
 
 function App() {
 
-  const globalStyles = createGlobalStyle`
-    body {
+  const GlobalStyles = createGlobalStyle`
+    html,body {
       padding:0;
       margin: 0;
       box-sizing: border-box;
@@ -21,7 +22,9 @@ function App() {
   `
 
   return (
-    <globalStyles>
+    <>
+    <GlobalStyles/>
+      <NavBar/>
       <GlobalProvider>
         <Router>
           <Switch>
@@ -37,7 +40,7 @@ function App() {
           </Switch>
         </Router>
       </GlobalProvider>
-    </globalStyles>
+    </>
   );
 }
 

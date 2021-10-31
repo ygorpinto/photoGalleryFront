@@ -37,23 +37,32 @@ const Login = () => {
             <Redirect to='/photos'/>
         ) : (
                     <LoginStyles>
-                    <div>
-                        <h1>Login</h1>
+                    <div className="photoDiv">
+                        <img 
+                        src="login.png"/>
                     </div>
-                    <form
-                    onSubmit={e => handleLogin(e)}
-                    >
-                        <input 
-                          onChange={e => setEmail(e.target.value)}
-                          placeholder="Email"/>
-                        <input
-                          onChange={e => setPassword(e.target.value)}
-                          placeholder="Senha"/>
-                        <button
-                        type="submit"
-                        >Entrar</button>
-                        <p>Não tem uma conta? <Link to="/register">Crie sua conta</Link></p>
-                    </form>
+                    <div className="formDiv">
+                        <div>
+                            <h1>Photos Gallery</h1>
+                            <h3>Login</h3>
+                        </div>
+                        <form
+                        onSubmit={e => handleLogin(e)}
+                        >
+                            <input 
+                              onChange={e => setEmail(e.target.value)}
+                              placeholder="Email"/>
+                            <input
+                              className="passInput"
+                              onChange={e => setPassword(e.target.value)}
+                              type="password"
+                              placeholder="Senha"/>
+                            <button
+                            type="submit"
+                            >Entrar</button>
+                            <p>Não tem uma conta? <Link to="/register">Crie sua conta</Link></p>
+                        </form>
+                    </div>
                 </LoginStyles>
         )}
         </>
