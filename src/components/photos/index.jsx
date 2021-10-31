@@ -17,7 +17,7 @@ const Photos = () => {
         <>
         {(cookies.get('auth_token') && cookies.get('auth_token') !== 'undefined') ? (
             <PhotoStyles>
-            
+            <p>VOCE ESTA LOGADO!!</p>
             </PhotoStyles>
         ) : (<Redirect to="/"/>)}
         </>
