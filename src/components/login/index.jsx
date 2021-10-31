@@ -44,6 +44,7 @@ const Login = () => {
                     <div className="formDiv">
                         <div>
                             <h1>Photos Gallery</h1>
+                            <h1 className='mirrorText'>Photos Gallery</h1>
                             <h3>Login</h3>
                         </div>
                         <form

@@ -16,12 +16,22 @@ background-color: #29C8C8;
         h1 {
             font-size: 4rem;
             color: #FFFFFF;
+            margin-bottom:0;
         }
 
         h3 {
             margin-left: 4rem;
             font-size: 1.6rem;
             color: #FFFFFF;
+        }
+
+        .mirrorText {
+            margin:0;
+            font-size: 4rem;
+            color: #FFFFFF;
+            opacity: 0.25;
+            filter: blur(1.31659px);
+            transform: matrix(1, 0, 0, -1, 0, 0);
         }
     }
 
