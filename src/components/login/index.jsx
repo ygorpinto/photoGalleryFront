@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api/api";
+import { GlobalContext } from "../context/globalContext";
 import LoginStyles from "./styles";
 
 const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const {
+        state,
+        dispatch
+    } = useContext(GlobalContext);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -15,6 +21,10 @@ const Login = () => {
             password: password
         }
         const res = await api.post('/sessions', data)
+        dispatch({
+            type:'login',
+            payload:res.data
+        });
         console.log(res.data);
     }
 

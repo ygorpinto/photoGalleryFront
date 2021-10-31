@@ -8,6 +8,7 @@ import Login from "./components/login";
 import Register from './components/register';
 import Photos from "./components/photos";
 import { createGlobalStyle } from 'styled-components'
+import GlobalProvider from "./components/context/globalContext";
 
 function App() {
 
@@ -21,19 +22,21 @@ function App() {
 
   return (
     <globalStyles>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Login/>
-          </Route>
-          <Route exact path="/register">
-            <Register/>
-          </Route>
-          <Route path="/photos">
-            <Photos />
-          </Route>
-        </Switch>
-      </Router>
+      <GlobalProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Login/>
+            </Route>
+            <Route exact path="/register">
+              <Register/>
+            </Route>
+            <Route path="/photos">
+              <Photos />
+            </Route>
+          </Switch>
+        </Router>
+      </GlobalProvider>
     </globalStyles>
   );
 }
