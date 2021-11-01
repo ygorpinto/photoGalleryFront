@@ -32,9 +32,13 @@ const Register = () => {
             <Redirect to='/'/>
         ) : (
             <RegisterStyles>
-            <div>
-                <h1>Registrar</h1>
+            <div className="photoDiv">
+                <img src="login.png" />
             </div>
+            <div className="formDiv">
+                <h1>Photos Gallery</h1>
+                <h1 className='mirrorText'>Photos Gallery</h1>
+                <h3>Registrar</h3>
             <form
             onSubmit={e => handleNewUser(e)}
             >
@@ -54,6 +58,7 @@ const Register = () => {
                 >Criar</button>
                 <p>Já tem uma conta? <Link to="/">Faça Login</Link></p>
             </form>
+            </div>
         </RegisterStyles>
         )}
         </>
