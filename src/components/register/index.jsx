@@ -13,12 +13,11 @@ const Register = () => {
 
     const handleNewUser = async (e) => {
         e.preventDefault();
-        const data = {
-            email: email,
-            password: password
-        }
         try {
-            await api.post('/users', data)
+            await api.post('/users', null, {params:{
+                email:email,
+                password: password
+            }})
             alert("usuário criado com sucesso.")
             setToLogin(true)
         } catch (e) {
